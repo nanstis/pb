@@ -10,18 +10,16 @@ module.exports = {
     ],
     theme: {
         extend: {
-            extend: {
-                animation: ['group-hover'],
-                colors: {
-                    'primary': '#fe8a02',
-                    'plan-standard': '#b1d236',
-                    'plan-premium': '#ffc64b',
-                    'plan-exclusive': '#fe8a02',
-                    'plan-vip': '#85338b',
-                },
-                fontFamily: {
-                    'body': ['"Libre Baskerville"'],
-                },
+            animation: ['group-hover'],
+            colors: {
+                'primary': '#fe8a02',
+                'plan-standard': '#b1d236',
+                'plan-premium': '#ffc64b',
+                'plan-exclusive': '#fe8a02',
+                'plan-vip': '#85338b',
+            },
+            fontFamily: {
+                'body': ['"Libre Baskerville"'],
             },
         },
     },
