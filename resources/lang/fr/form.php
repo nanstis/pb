@@ -1,7 +1,26 @@
 <?php
 
 return [
+    'name' => 'Nom',
     'email' => 'Couriel',
+    'phone' => 'Téléphone',
+    'fax' => 'Fax',
     'password' => 'Mot de passe',
     'password-confirm' => 'Confirmer mot de password',
+    'company-name' => 'Nom de l\'entreprise',
+    'address' => 'Adresse',
+    'city' => 'Ville',
+    'zip' => 'Zip / Code postal',
+    'state' => 'Canton',
+    'cover-image' => 'Image de couverture',
+    'slogan' => 'Slogan',
+    'summary' => 'Résumé',
+    'description' => 'Description',
+    'french' => 'Français',
+    'english' => 'Anglais',
+    'german' => 'Allemand',
+    'italian' => 'Italien',
+    'other' => 'Autre',
+    'website' => 'Site web',
+    'save' => 'Enregistrer',
 ];

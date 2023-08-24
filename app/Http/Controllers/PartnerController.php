@@ -5,31 +5,34 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePartnerRequest;
 use App\Http\Requests\UpdatePartnerRequest;
 use App\Models\Partner;
+use App\Models\Plan;
+use App\Models\State;
 
 class PartnerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('partners.index');
+        return view('partners.index', [
+            'plans' => Plan::all()
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('partners.create', [
+            'states' => State::all()
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StorePartnerRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $partner = new Partner($validated);
+        $partner->user_id = auth()->user()->id;
+        $partner->save();
+
+        return redirect('/dashboard');
     }
 
     /**

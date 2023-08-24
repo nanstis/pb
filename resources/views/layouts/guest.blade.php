@@ -16,23 +16,6 @@
 </head>
 <body>
 <x-navigation>
-    <!-- Header -->
-    @if(isset($header))
-        <div class="relative">
-            <img src="{{Vite::image('header.jpg')}}" alt="{{__('alt.description')}}"
-                {{ $attributes->class([
-                   'object-cover',
-                   'w-full',
-                   'brightness-50',
-                   'h-'.$headerHeight => $headerHeight != null]) }}
-            />
-
-            <div class="absolute top-1/3 px-4 py-3 w-full text-white">
-                {{$header}}
-            </div>
-        </div>
-    @endif
-
     <x-slot name="auth">
         @auth
             <a href="{{ url('/dashboard') }}" class="text-sky-500 hover:underline">Dashboard</a>
@@ -42,8 +25,9 @@
             </a>
 
             @if (Route::has('register'))
-                <a href="{{ route('register') }}"
-                   class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                <a href="{{ route('register') }}">
+                    {{ __('layout.register') }}
+                </a>
             @endif
         @endauth
 

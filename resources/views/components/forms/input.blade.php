@@ -2,6 +2,8 @@
     'label',
     'name',
     'type' => 'text',
+    'placeholder' => '',
+    'autocomplete' => 'off',
     'message' => true,
 ])
 
@@ -10,7 +12,12 @@
            class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">
         {!! $label !!}
     </label>
-    <input type="{{$type}}" name="{{$name}}" id="{{$name}}" autocomplete="off"
+    <input type="{{$type}}"
+           name="{{$name}}"
+           id="{{$name}}"
+           autocomplete="{{$autocomplete}}"
+           placeholder="{{$placeholder}}"
+           value="{{old($name)}}"
            class="input @error($name) input-error @enderror"/>
     @error($name)
     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">

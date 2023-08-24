@@ -15,9 +15,7 @@
             <div class="px-6 py-12 shadow sm:rounded-lg sm:px-12">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <x-slot name="logo">
-                        <x-application-logo/>
-                    </x-slot>
+
                     <div>
                         <x-forms.input :label="__('form.email')" name="email" type="email"/>
                     </div>
@@ -26,24 +24,35 @@
                         <x-forms.input :label="__('form.password')" name="password" type="password"/>
                     </div>
 
-                    <div class="block mt-4">
+                    <div class="block mb-8">
                         <label for="remember_me" class="flex items-center hover:underline">
-                            <x-checkbox id="remember_me" name="remember"/>
+                            <x-checkbox id="remember_me" name="remember" class="border-gray-500"/>
                             <span class="ml-2 text-sm text-gray-500">{{ __('Remember me') }}</span>
                         </label>
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        @if (Route::has('password.request'))
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                               href="{{ route('password.request') }}">
-                                {{ __('Forgot your password?') }}
-                            </a>
-                        @endif
+                    <x-forms.button class="mt-4">
+                        {{ __('Log in') }}
+                    </x-forms.button>
 
-                        <x-button class="ml-4">
-                            {{ __('Log in') }}
-                        </x-button>
+                    <div class="flex items-center justify-end mt-2">
+                        <div class="grid grid-rows-2">
+                            <div>
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                   href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                            </div>
+
+                            <div>
+                                @if (Route::has('password.request'))
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                       href="{{ route('register') }}">
+                                        {{ __('Not a member?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
