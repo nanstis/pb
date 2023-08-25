@@ -23,11 +23,11 @@ return new class extends Migration {
             $table->string('slogan')->nullable();
             $table->string('summary');
             $table->string('description');
-            $table->string('french')->nullable();
-            $table->string('english')->nullable();
-            $table->string('german')->nullable();
-            $table->string('italian')->nullable();
-            $table->string('other')->nullable();
+            $table->boolean('french')->default(true);
+            $table->boolean('english')->default(false);
+            $table->boolean('german')->default(false);
+            $table->boolean('italian')->default(false);
+            $table->boolean('other')->default(false);
             $table->string('website')->nullable()->unique();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();

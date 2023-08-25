@@ -12,10 +12,11 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        $partners = Partner::whereBelongsTo(Auth::user())->get();
+        $partner = Partner::whereBelongsTo(Auth::user())->get();
 
         return view('partners.index', [
-            'partners' => $partners
+            // TODO: fix indexing
+            'partner' => $partner[0]
         ]);
     }
 
