@@ -1,5 +1,5 @@
 @props([
-    'type' => 'button',
+    'type' => 'submit',
     'route' => null,
     'icon' => null,
     'animation' => null,

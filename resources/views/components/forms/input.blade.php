@@ -3,7 +3,7 @@
     'name',
     'type' => 'text',
     'placeholder' => '',
-    'autocomplete' => 'off',
+    'autocomplete' => '',
     'message' => true,
 ])
 

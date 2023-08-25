@@ -18,7 +18,7 @@
 <x-navigation>
     <x-slot name="auth">
         @auth
-            <a href="{{ url('/dashboard') }}" class="text-sky-500 hover:underline">Dashboard</a>
+            <x-profile/>
         @else
             <a href="{{ route('login') }}">
                 {{ __('layout.login') }}

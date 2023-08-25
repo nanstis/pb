@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePartnerRequest;
 use App\Http\Requests\UpdatePartnerRequest;
 use App\Models\Partner;
-use App\Models\Plan;
 use App\Models\State;
+use Illuminate\Support\Facades\Auth;
 
 class PartnerController extends Controller
 {
     public function index()
     {
+        $partners = Partner::whereBelongsTo(Auth::user())->get();
+
         return view('partners.index', [
-            'plans' => Plan::all()
+            'partners' => $partners
         ]);
     }
 
@@ -29,15 +31,13 @@ class PartnerController extends Controller
         $validated = $request->validated();
 
         $partner = new Partner($validated);
-        $partner->user_id = auth()->user()->id;
+        $partner->user_id = Auth::id();
         $partner->save();
 
-        return redirect('/dashboard');
+        return redirect()->route('partners.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Partner $partner)
     {
         //
