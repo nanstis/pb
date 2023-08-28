@@ -5,29 +5,40 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePartnerRequest;
 use App\Http\Requests\UpdatePartnerRequest;
 use App\Models\Partner;
+use App\Models\Plan;
 use App\Models\State;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PartnerController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $partner = Partner::whereBelongsTo(Auth::user())->get();
-
         return view('partners.index', [
-            // TODO: fix indexing
-            'partner' => $partner[0]
+            'plans' => Plan::all()
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('partners.create', [
             'states' => State::all()
         ]);
     }
 
-    public function store(StorePartnerRequest $request)
+    public function show(string $name): View
+    {
+        $partner = Partner::where('name', $name)->firstOrFail();
+        Gate::authorize('view', $partner);
+
+        return view('partners.show', [
+            'partner' => $partner
+        ]);
+    }
+
+    public function store(StorePartnerRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -35,18 +46,9 @@ class PartnerController extends Controller
         $partner->user_id = Auth::id();
         $partner->save();
 
-        return redirect()->route('partners.index');
+        return redirect()->route('partners.show');
     }
 
-
-    public function show(Partner $partner)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Partner $partner)
     {
         //

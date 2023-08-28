@@ -13,15 +13,17 @@ class PartnerPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return false;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Partner $partner): bool
+    public function view(User $user, Partner $partner): Response
     {
-        //
+        return $user->id === $partner->user_id
+            ? Response::allow()
+            : Response::deny('You do not own this company.');
     }
 
     /**

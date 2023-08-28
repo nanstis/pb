@@ -5,22 +5,27 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAdvertisementRequest;
 use App\Http\Requests\UpdateAdvertisementRequest;
 use App\Models\Advertisement;
+use Illuminate\Contracts\View\View;
 
 class AdvertisementController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        return view('advertisements.index');
-    }
+        $ads = Advertisement::active()->get();
 
-    public function create()
-    {
-        //
+        return view('advertisements.index', [
+            'ads' => $ads->all(),
+        ]);
     }
 
     public function store(StoreAdvertisementRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $advertisement = new Advertisement($validated);
+        $advertisement->save();
+
+        return redirect()->route('profile.show');
     }
 
     public function show(Advertisement $advertisement)

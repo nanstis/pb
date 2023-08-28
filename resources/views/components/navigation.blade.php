@@ -44,7 +44,7 @@
                                                 <x-navigation-item route-name="home"
                                                                    :title="__('navigation.home')"/>
 
-                                                <x-navigation-item route-name="partnership"
+                                                <x-navigation-item route-name="partners.index"
                                                                    :title="__('navigation.partners')"/>
 
                                                 <x-navigation-item route-name="advertisements.index"

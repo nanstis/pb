@@ -2,18 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\PlanOption;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PlanOption>
+ * @extends Factory<PlanOption>
  */
 class PlanOptionFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = PlanOption::class;
+
     public function definition(): array
     {
         return [
