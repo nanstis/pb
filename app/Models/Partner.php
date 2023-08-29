@@ -53,4 +53,9 @@ class Partner extends Model
     {
         return $this->hasOne(Advertisement::class);
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'name';
+    }
 }

@@ -10,8 +10,11 @@ Route::get('/become-partner', [PartnerController::class, 'index'])->name('partne
 
 
 Route::resource('advertisements', AdvertisementController::class)->except([
-    'store'
+    'store', 'show', 'destroy', 'update'
 ]);
+
+Route::get('/advertisements/{partner:name}', [AdvertisementController::class, 'show'])->name('advertisements.show');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -19,10 +22,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::resource('partners', PartnerController::class)->except([
-        'index', 'show'
+        'index',
     ]);
 
-    Route::get('/partners/{name}', [PartnerController::class, 'show'])->name('partners.show');
     Route::post('/advertisements', [AdvertisementController::class, 'store'])->name('advertisements.store');
+    Route::put('/advertisements/{id}', [AdvertisementController::class, 'update'])->name('advertisements.update');
+    Route::delete('/advertisements/{id}', [AdvertisementController::class, 'destroy'])->name('advertisements.destroy');
 });
 

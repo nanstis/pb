@@ -13,6 +13,7 @@ module.exports = {
             animation: ['group-hover'],
             colors: {
                 'primary': '#fe8a02',
+                'secondary': '#4dd170',
                 'plan-standard': '#b1d236',
                 'plan-premium': '#ffc64b',
                 'plan-exclusive': '#fe8a02',

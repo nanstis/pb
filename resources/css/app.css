@@ -15,8 +15,12 @@
     transition: background-size .1s ease-in-out;
 }
 
-.link-underline-black {
+.link-underline-primary {
     background-image: linear-gradient(transparent, transparent), linear-gradient(#ec7f00, #ec7f00)
+}
+
+.link-underline-secondary {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#4dd170, #4dd170)
 }
 
 .link-underline:hover {

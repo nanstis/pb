@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-header :tiny="true">
         <h1 class="font-semibold text-4xl mb-12">{{strtoupper(__('pages/partner.title'))}}</h1>
         <x-button icon="heroicon-o-building-storefront" route="partners.create" animation="zoom">
@@ -63,4 +63,4 @@
             </dl>
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>

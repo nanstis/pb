@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,7 +22,19 @@
 <div class="min-h-screen bg-gray-100">
     <x-navigation>
         <x-slot name="auth">
-            <x-profile/>
+            @auth
+                <x-navigation-profile/>
+            @else
+                <a href="{{ route('login') }}">
+                    {{ __('layout.login') }}
+                </a>
+
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}">
+                        {{ __('layout.register') }}
+                    </a>
+                @endif
+            @endauth
         </x-slot>
 
         {{$slot}}

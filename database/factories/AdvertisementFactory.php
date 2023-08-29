@@ -18,4 +18,13 @@ class AdvertisementFactory extends Factory
             //
         ];
     }
+
+    public function withRoute(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'account_status' => 'suspended',
+            ];
+        });
+    }
 }

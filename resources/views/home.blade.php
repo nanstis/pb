@@ -12,7 +12,7 @@
 
 <body class="antialiased">
 
-<x-guest-layout>
+<x-app-layout>
     <x-header>
         <!-- Title -->
         <h1 class="font-semibold text-4xl text-center">{{__('pages/home.title')}}</h1>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </x-header>
-</x-guest-layout>
+</x-app-layout>
 
 </body>
 </html>

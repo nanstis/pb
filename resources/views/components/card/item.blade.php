@@ -9,10 +9,7 @@
     <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
         <span class="flex-grow">{{$text}}</span>
         <span class="ml-4 flex-shrink-0">
-            <button type="button"
-                    class="rounded-md bg-white text-primary hover:underline">
-                Update
-            </button>
+            {{$slot}}
         </span>
     </dd>
 </div>

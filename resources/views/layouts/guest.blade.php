@@ -18,7 +18,7 @@
 <x-navigation>
     <x-slot name="auth">
         @auth
-            <x-profile/>
+            <x-navigation-profile/>
         @else
             <a href="{{ route('login') }}">
                 {{ __('layout.login') }}

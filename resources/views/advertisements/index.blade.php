@@ -12,36 +12,50 @@
                 <div class="grid grid-cols-5">
 
                     <!-- Categories -->
-                    <div class="col-span-1 border-primary border">
+                    <div class="col-span-1">
                         List
                     </div>
 
                     <!-- Ads -->
-                    <div class="col-span-4 border-primary border">
+                    <div class="col-span-4">
                         @foreach($ads as $ad)
-                            <div class="max-h-[180px] overflow-hidden">
-                                <div class="grid grid-cols-6">
-                                    <div class="col-span-2">
-                                        <img class="object-cover"
-                                             src="{{Vite::image('placeholder.png')}}"
-                                             alt="{{$ad->partner->description}}">
-                                    </div>
-                                    <div class="row-span-2 col-span-4">
-                                        <h2 class="text-xl mb-4 border-2">{{ucfirst($ad->partner->name)}}</h2>
-                                        <p>{{$ad->partner->description}}</p>
+                            @php($partner = $ad->partner)
+
+                            <a href="{{route('advertisements.show', $partner)}}">
+                                <div class="max-h-[180px] overflow-hidden mb-4 border border-purple-500">
+                                    <div class="grid grid-cols-6">
+                                        <!-- Image -->
+                                        <div class="col-span-2">
+                                            <img class="object-cover"
+                                                 src="{{Vite::image('placeholder.png')}}"
+                                                 alt="{{$partner->description}}">
+                                        </div>
+
+                                        <!-- Content -->
+                                        <div class="row-span-2 col-span-4">
+                                            <div class="m-6">
+                                                <h2 class="text-lg text-primary font-semibold">{{strtoupper($partner->name)}}</h2>
+                                                <div class="inline-flex items-center text-sm">
+                                                    @svg('heroicon-o-map-pin', 'm-1')
+                                                    <span>
+                                                    {{ucfirst($partner->state)}},
+                                                    {{$partner->address}},
+                                                    {{$partner->zip}}
+                                                        {{$partner->city}}
+                                                </span>
+                                                </div>
+
+                                                <hr>
+                                                <p class="text-ellipsis overflow-hidden mt-4">{{$ad->partner->summary}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         @endforeach
                     </div>
-
-
                 </div>
-
-
             </div>
         </div>
     </div>
-
-
 </x-guest-layout>
