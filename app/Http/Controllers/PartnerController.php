@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePartnerRequest;
 use App\Http\Requests\UpdatePartnerRequest;
+use App\Models\Category;
+use App\Models\CategoryChild;
 use App\Models\Partner;
-use App\Models\Plan;
 use App\Models\State;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -16,8 +17,10 @@ class PartnerController extends Controller
 {
     public function index(): View
     {
+        $partners = Auth::user()->partners;
+
         return view('partners.index', [
-            'plans' => Plan::all()
+            'partners' => $partners
         ]);
     }
 
@@ -33,8 +36,12 @@ class PartnerController extends Controller
         $partner = Partner::where('name', $name)->firstOrFail();
         Gate::authorize('view', $partner);
 
+        $partnerships = Auth::user()->partners->map(fn(Partner $p) => $p->name);
+
         return view('partners.show', [
-            'partner' => $partner
+            'partner' => $partner,
+            'partnerships' => $partnerships,
+            'categories' => Category::all()
         ]);
     }
 
@@ -54,17 +61,24 @@ class PartnerController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdatePartnerRequest $request, Partner $partner)
     {
-        //
+        $request->validated();
+        $advertisement = $partner->advertisement;
+
+        $categories = $request->input('categories');
+        $children = $request->input('children');
+
+        $advertisement->categories()->sync($categories);
+        $toSync = CategoryChild::whereIn('id', $children)->get()
+            ->map(fn(CategoryChild $child) => $child->category_id);
+
+        $advertisement->categories()->sync($toSync);
+        $advertisement->categoryChildren()->sync($children);
+
+        return redirect()->back()->with('success-update-partner', __('notification.success-update-partner'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Partner $partner)
     {
         //

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdvertisementRequest;
-use App\Http\Requests\UpdateAdvertisementRequest;
 use App\Models\Advertisement;
+use App\Models\Category;
 use App\Models\Partner;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -12,12 +12,26 @@ use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $ads = Advertisement::active()->get();
+        $categories = $request->input('categories');
+        $children = $request->input('children');
+
+        if ($categories || $children) {
+            $ads = Advertisement::active()->get()->map(function ($ad) use ($categories, $children) {
+                $categories = $ad->partner->categories;
+                $children = $ad->partner->children;
+                if ($categories->isEmpty() && $children->isEmpty()) return false;
+
+                return $ad->partner->categories->contains('id', $categories) || $ad->partner->children->contains('id', $children);
+            });
+        } else {
+            $ads = Advertisement::active()->get();
+        }
 
         return view('advertisements.index', [
             'ads' => $ads->all(),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -38,29 +52,16 @@ class AdvertisementController extends Controller
         ]);
     }
 
-
-    public function edit(Advertisement $advertisement)
-    {
-        //
-    }
-
-    public function update(UpdateAdvertisementRequest $request, Advertisement $advertisement)
-    {
-        $validated = $request->validated();
-
-        $ad = Advertisement::find($validated['id']);
-        dd($ad);
-    }
-
     public function destroy(int $id): RedirectResponse
     {
         Advertisement::find($id)->delete();
-        return redirect()->back()->with('success', 'Advertisement deleted successfully');
+        return redirect()->back()->with('success-destroy-advertisement', __('notification.success-destroy-advertisement'));
     }
 
-    public function restore(Request $request)
+    public function restore(int $id): RedirectResponse
     {
-        dd($request->all());
+        Advertisement::withTrashed()->find($id)->restore();
+        return redirect()->back()->with('success-restore-advertisement', __('notification.success-restore-advertisement'));
     }
 
 }

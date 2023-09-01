@@ -96,9 +96,12 @@
                     {{ __('Profile') }}
                 </x-dropdown-link>
 
-                <x-dropdown-link href="{{route('partners.show', [$partner->name])}}">
-                    {{ __('Partnership') }}
-                </x-dropdown-link>
+                @if($partner)
+                    <x-dropdown-link href="{{route('partners.index')}}">
+                        {{ __('Partnership') }}
+                    </x-dropdown-link>
+                @endif
+
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-dropdown-link href="{{ route('api-tokens.index') }}">

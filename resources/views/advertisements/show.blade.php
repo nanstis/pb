@@ -1,7 +1,7 @@
-<x-guest-layout>
+<x-app-layout>
+    {{ Breadcrumbs::render('advertisement.show', $partner) }}
 
-    <div class="m-4">
-
+    <div>
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <h1 class="sr-only">{{$partner->name}}</h1>
             <!-- Main 3 column grid -->
@@ -76,5 +76,5 @@
         </div>
 
     </div>
-</x-guest-layout>
+</x-app-layout>
 

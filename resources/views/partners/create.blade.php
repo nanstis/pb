@@ -1,4 +1,6 @@
 <x-app-layout>
+    {{ Breadcrumbs::render('partner.create') }}
+
     <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[820px]">
             <div class="px-6 py-12 shadow sm:rounded-lg sm:px-12">
@@ -47,7 +49,6 @@
 
 
                             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
-
                                 <!-- City -->
                                 <div class="sm:col-span-2 sm:col-start-1">
                                     <x-forms.input type="text"

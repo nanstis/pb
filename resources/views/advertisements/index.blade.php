@@ -1,4 +1,5 @@
-<x-guest-layout>
+<x-app-layout>
+    {{ Breadcrumbs::render('advertisement') }}
 
     <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
@@ -9,11 +10,11 @@
             <div class="px-6 py-12 shadow sm:rounded-lg sm:px-12">
 
                 <!-- Listing -->
-                <div class="grid grid-cols-5">
+                <div class="grid grid-cols-6">
 
                     <!-- Categories -->
-                    <div class="col-span-1">
-                        List
+                    <div class="col-span-2 mr-10">
+                        @include('advertisements.partials.filter')
                     </div>
 
                     <!-- Ads -->
@@ -22,7 +23,7 @@
                             @php($partner = $ad->partner)
 
                             <a href="{{route('advertisements.show', $partner)}}">
-                                <div class="max-h-[180px] overflow-hidden mb-4 border border-purple-500">
+                                <div class="max-h-[180px] overflow-hidden mb-4 border">
                                     <div class="grid grid-cols-6">
                                         <!-- Image -->
                                         <div class="col-span-2">
@@ -58,4 +59,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>

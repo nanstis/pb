@@ -10,7 +10,6 @@ module.exports = {
     ],
     theme: {
         extend: {
-            animation: ['group-hover'],
             colors: {
                 'primary': '#fe8a02',
                 'secondary': '#4dd170',
@@ -18,9 +17,10 @@ module.exports = {
                 'plan-premium': '#ffc64b',
                 'plan-exclusive': '#fe8a02',
                 'plan-vip': '#85338b',
-            },
-            fontFamily: {
-                'body': ['"Libre Baskerville"'],
+
+                // Theme
+                'success': '#10b759',
+                'danger': '#ff0014',
             },
         },
     },

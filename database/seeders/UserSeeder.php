@@ -12,12 +12,6 @@ class UserSeeder extends Seeder
 
     public function run(): void
     {
-        User::factory()->withPersonalTeam()->create([
-            'name' => 'Nicholas',
-            'email' => 'bleyo@alphomega.org',
-            'password' => bcrypt('password'),
-        ])->save();
-
         User::factory()->withPersonalTeam()
             ->count(10)
             ->has(Partner::factory()
@@ -25,5 +19,16 @@ class UserSeeder extends Seeder
                 ->has(Advertisement::factory(), 'advertisement'),
                 'partners')
             ->create();
+
+        User::factory()->withPersonalTeam()
+            ->has(Partner::factory()
+                ->count(2)
+                ->has(Advertisement::factory(), 'advertisement'),
+                'partners')
+            ->create([
+                'name' => 'Nicholas',
+                'email' => 'bleyo@alphomega.org',
+                'password' => bcrypt('password'),
+            ]);
     }
 }

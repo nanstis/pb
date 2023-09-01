@@ -15,8 +15,8 @@
 <x-app-layout>
     <x-header>
         <!-- Title -->
-        <h1 class="font-semibold text-4xl text-center">{{__('pages/home.title')}}</h1>
-        <h2 class="text-center text-2xl mt-5">{{__('pages/home.sub-title')}}</h2>
+        <h1 class="font-semibold text-4xl text-center uppercase">{{__('pages/home.title')}}</h1>
+        <h2 class="text-center text-2xl mt-5 uppercase">{{__('pages/home.sub-title')}}</h2>
 
         <!-- About -->
         <div class="m-40">

@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 [x-cloak] {
     display: none;
+}
+
+.uppercase {
+    text-transform: uppercase
 }
 
 .link-underline {
@@ -168,8 +174,8 @@
         @apply text-center font-bold text-lg p-4 text-white overflow-visible mt-2 shadow-xl -left-5 -right-5
     }
 
-    .font-baskerville {
-        @apply font-['Libre_Baskerville']
+    .font-ibm {
+        @apply font-['IBM_Plex_Sans']
     }
 
 

@@ -51,7 +51,7 @@ class Partner extends Model
 
     public function advertisement(): HasOne
     {
-        return $this->hasOne(Advertisement::class);
+        return $this->hasOne(Advertisement::class)->withTrashed();
     }
 
     public function getRouteKeyName(): string
