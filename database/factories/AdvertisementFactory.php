@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Advertisement;
+use App\Models\Partner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,7 +16,7 @@ class AdvertisementFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'partner_id' => Partner::factory()
         ];
     }
 

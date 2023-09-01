@@ -5,15 +5,20 @@
 
     <x-application-card breadcrumb="partner.show" :param="$partner">
 
+        <h2 class="text-xl mb-10">
+            {{$partner->name}}
+        </h2>
+
 
         <div class="grid grid-cols-6">
+            <div>
+                <x-dashboard.advertisement-category :partner="$partner"/>
+            </div>
             <div>
                 <x-dashboard.advertisement-status :partner="$partner"/>
             </div>
 
-            <div>
-                <x-dashboard.advertisement-category :partner="$partner"/>
-            </div>
+
         </div>
 
     </x-application-card>

@@ -5,8 +5,12 @@
     <ul class="mt-4">
         @foreach($categories as $category)
             <li>
+                @php
+                    $c = \Illuminate\Support\Facades\Request::input('categories');
+
+                @endphp
                 <x-forms.checkbox name="categories[]" :label="$category[app()->getLocale()]"
-                                  value="{{$category->id}}"/>
+                                  value="{{$category->id}}" :checked="$c && in_array($category->id, $c)"/>
                 <ul class="ml-6">
                     @foreach($category->children as $subCategory)
                         <li>

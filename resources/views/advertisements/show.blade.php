@@ -1,12 +1,11 @@
 <x-app-layout>
-    {{ Breadcrumbs::render('advertisement.show', $partner) }}
 
-    <div>
-        <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            <h1 class="sr-only">{{$partner->name}}</h1>
+    <x-application-card breadcrumb="advertisement.show" :param="$partner">
+        <h1 class="sr-only">{{$partner->name}}</h1>
+        <br>
+        <div class="px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <!-- Main 3 column grid -->
             <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
-
                 <!-- Left column -->
                 <div class="grid grid-cols-1 gap-4">
                     <section aria-labelledby="section-2-title">
@@ -70,11 +69,10 @@
                         </div>
                     </section>
                 </div>
-
-
             </div>
         </div>
+    </x-application-card>
 
-    </div>
+
 </x-app-layout>
 

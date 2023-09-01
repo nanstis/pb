@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\SoftDeletes;
+use Database\Factories\AdvertisementFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,11 @@ class Advertisement extends Model
     public $fillable = [
         'partner_id',
     ];
+
+    protected static function newFactory(): AdvertisementFactory
+    {
+        return AdvertisementFactory::new();
+    }
 
     public function partner(): BelongsTo
     {
@@ -37,6 +43,6 @@ class Advertisement extends Model
 
     public function scopeActive(Builder $query): void
     {
-        $query->where('is_active', true);
+        $query->where('deleted_at', null);
     }
 }
