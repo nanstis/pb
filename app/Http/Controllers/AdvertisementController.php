@@ -15,13 +15,21 @@ class AdvertisementController extends Controller
     public function index(Request $request): View
     {
         $ads = Advertisement::active()->get()->collect();
-        $categories = $request->input('categories');
+        $categories = $request->input(' ');
         $children = $request->input('children');
 
         if ($categories) {
             $ads = $ads->filter(function (Advertisement $advertisement) use ($categories) {
                 return $advertisement->categories()
                     ->whereIn('category_id', $categories)
+                    ->get()->isNotEmpty();
+            });
+        }
+
+        if ($children) {
+            $ads = $ads->filter(function (Advertisement $advertisement) use ($categories) {
+                return $advertisement->categoryChildren()
+                    ->whereIn('category_child_id', $categories)
                     ->get()->isNotEmpty();
             });
         }

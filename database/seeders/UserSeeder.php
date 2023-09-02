@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AdvertCategory;
+use App\Models\AdvertCategoryChild;
 use App\Models\Advertisement;
 use App\Models\Partner;
 use App\Models\User;
@@ -32,8 +33,15 @@ class UserSeeder extends Seeder
         Advertisement::factory()
             ->count(20)
             ->create()->each(function (Advertisement $ad) {
+                $categoryId = rand(1, 6);
+                $categoryChildId = rand(1, 4);
+
                 AdvertCategory::factory([
-                    'category_id' => rand(1, 5),
+                    'category_id' => $categoryId,
+                ])->for($ad)->create();
+
+                AdvertCategoryChild::factory([
+                    'category_child_id' => $categoryChildId,
                 ])->for($ad)->create();
             });
 

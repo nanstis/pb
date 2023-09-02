@@ -6,16 +6,18 @@
         @foreach($categories as $category)
             <li>
                 @php
-                    $c = \Illuminate\Support\Facades\Request::input('categories');
-
+                    $checkedCategories = \Illuminate\Support\Facades\Request::input('categories');
+                    $checkedChildren = \Illuminate\Support\Facades\Request::input('children');
                 @endphp
                 <x-forms.checkbox name="categories[]" :label="$category[app()->getLocale()]"
-                                  value="{{$category->id}}" :checked="$c && in_array($category->id, $c)"/>
+                                  value="{{$category->id}}"
+                                  :checked="$checkedCategories && in_array($category->id, $checkedCategories)"/>
                 <ul class="ml-6">
                     @foreach($category->children as $subCategory)
                         <li>
                             <x-forms.checkbox name="children[]" :label="$subCategory[app()->getLocale()]"
-                                              value="{{$subCategory->id}}"/>
+                                              value="{{$subCategory->id}}"
+                                              :checked="$checkedChildren && in_array($subCategory->id, $checkedChildren)"/>
                         </li>
                     @endforeach
                 </ul>
