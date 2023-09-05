@@ -13,6 +13,7 @@ class AdvertCategoryChild extends Pivot
 
     public $table = 'advertisement_category_child';
     public $timestamps = false;
+    public $incrementing = true;
 
     protected $fillable = [
         'advertisement_id',

@@ -16,7 +16,10 @@ Route::resource('advertisements', AdvertisementController::class)->except([
     'store', 'show', 'destroy', 'update'
 ]);
 
-Route::get('/advertisements/', [AdvertisementController::class, 'index'])->name('advertisements.index');
+Route::get('/advertisements', [AdvertisementController::class, 'index'])->name('advertisements.index');
+Route::get('/advertisements/{category:en}', [AdvertisementController::class, 'category'])->name('advertisements.category');
+Route::get('/advertisements/{category:en}/{categoryChild:en}', [AdvertisementController::class, 'categoryChild'])->name('advertisements.categoryChild');
+
 Route::get('/advertisements/{partner:name}', [AdvertisementController::class, 'show'])->name('advertisements.show');
 
 
@@ -28,6 +31,7 @@ Route::middleware([
     Route::resource('partners', PartnerController::class);
 
     Route::post('/advertisements', [AdvertisementController::class, 'store'])->name('advertisements.store');
+    Route::put('/advertisements', [AdvertisementController::class, 'update'])->name('advertisements.update');
     Route::delete('/advertisements/{id}', [AdvertisementController::class, 'destroy'])->name('advertisements.destroy');
     Route::patch('/advertisements/{id}/restore', [AdvertisementController::class, 'restore'])->name('advertisements.restore');
 });

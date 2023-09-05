@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePartnerRequest;
-use App\Http\Requests\UpdatePartnerRequest;
 use App\Models\Category;
-use App\Models\CategoryChild;
 use App\Models\Partner;
 use App\Models\State;
 use Illuminate\Contracts\View\View;
@@ -61,23 +59,6 @@ class PartnerController extends Controller
         //
     }
 
-    public function update(UpdatePartnerRequest $request, Partner $partner)
-    {
-        $request->validated();
-        $advertisement = $partner->advertisement;
-
-        $categories = $request->input('categories');
-        $children = $request->input('children');
-
-        $advertisement->categories()->sync($categories);
-        $toSync = CategoryChild::whereIn('id', $children)->get()
-            ->map(fn(CategoryChild $child) => $child->category_id);
-
-        $advertisement->categories()->sync($toSync);
-        $advertisement->categoryChildren()->sync($children);
-
-        return redirect()->back()->with('success-update-partner', __('notification.success-update-partner'));
-    }
 
     public function destroy(Partner $partner)
     {

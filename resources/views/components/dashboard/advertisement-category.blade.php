@@ -1,19 +1,17 @@
-<form method="POST" action="{{route('partners.update', $partner)}}">
+<form method="POST" action="{{route('advertisements.update', $partner->advertisement)}}">
     @method('PUT')
     @csrf
     <x-dashboard.card title="advert categories">
         <ul>
             @foreach($categories as $category)
                 <li>
-                    <x-forms.checkbox name="categories[]" :label="$category[app()->getLocale()]"
-                                      value="{{$category->id}}"
-                                      :key="$partner->id"
-                                      :checked="$activeCategories->has($category->id)"/>
+                    <p>{{$category[app()->getLocale()]}}</p>
 
                     <ul class="ml-6">
                         @foreach($category->children as $subCategory)
                             <li>
-                                <x-forms.checkbox name="children[]" :label="$subCategory[app()->getLocale()]"
+                                <x-forms.checkbox name="items[]"
+                                                  :label="$subCategory[app()->getLocale()] . $subCategory->id"
                                                   value="{{$subCategory->id}}"
                                                   :key="$partner->id"
                                                   :checked="$activeCategoryChildren->has($subCategory->id)"/>

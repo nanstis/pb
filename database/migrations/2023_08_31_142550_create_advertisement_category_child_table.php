@@ -10,9 +10,9 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('advertisement_category_child', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(Advertisement::class);
             $table->foreignIdFor(CategoryChild::class);
-            $table->primary(['advertisement_id', 'category_child_id'], 'id');
         });
     }
 
