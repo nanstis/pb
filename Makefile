@@ -4,11 +4,11 @@ db_create:
 
 # Run migrations and seeders.
 db_fresh:
-	php artisan --env dev migrate:fresh --seed
+	php artisan --env dev migrate:fresh && php artisan --env dev db:seed
 
 # Start the development server.
 run:
-	php artisan --env dev serve
+	php artisan  dev serve
 
 # Start the Vite development server.
 dev:

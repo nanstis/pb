@@ -3,11 +3,10 @@
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartnerController;
-use App\Models\Plan;
 
-
+// Remove For Fresh Migration
 Route::view('/become-partner', 'pages.partner', [
-    'plans' => Plan::all()
+    // 'plans' => Plan::all()
 ])->name('partner');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
